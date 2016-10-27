@@ -13,9 +13,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+
+        window = UIWindow()
+
+        let viewController = ViewController()
+        let navigationController = UINavigationController(rootViewController: viewController)
+        navigationController.tabBarItem.title = "RIP Harembe"
+        navigationController.navigationBar.isTranslucent = false
+//        navigationController.navigationBar.isOpaque = true
+
+        let tabBarController = UITabBarController()
+        tabBarController.viewControllers = [
+            navigationController,
+            ViewController(),
+            ViewController(),
+        ]
+
+        window!.rootViewController = tabBarController
+
+        window!.makeKeyAndVisible()
+
         return true
     }
 

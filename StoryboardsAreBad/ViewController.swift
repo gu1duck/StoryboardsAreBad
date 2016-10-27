@@ -10,16 +10,41 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    override func loadView() {
+        view = customView
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+
+        tabBarItem.title = "YOLO"
+
+        customView.button1.addTarget(self, action: #selector(navigateToView), for: .touchUpInside)
+
+        customView.button2.addTarget(self, action: #selector(navigateToTable), for: .touchUpInside)
+
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func navigateToView(sender: UIButton) {
+        let targetViewController = ViewController()
+        navigationController?.pushViewController(targetViewController, animated: true)
     }
 
+    func navigateToTable(sender: UIButton) {
+        let targetViewController = TableViewController()
+        navigationController?.pushViewController(targetViewController, animated: true)
+//        present(
+//            targetViewController,
+//            animated: true,
+//            completion: nil
+//        )
+    }
+
+
+
+    lazy var customView: CustomView = {
+        return CustomView()
+    }()
 
 }
 
